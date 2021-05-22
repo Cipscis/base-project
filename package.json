@@ -1,6 +1,6 @@
 {
 	"name": "base-project",
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"description": "This is my base project to use when creating new projects.",
 	"private": true,
 	"scripts": {

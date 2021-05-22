@@ -6,7 +6,7 @@ This is my base project to use when creating new projects.
 
 You will need to install [Node.js](https://nodejs.org/en/) before using this project, because it relies on the [npm](https://www.npmjs.com/) package manager that comes bundled with Node.js
 
-1. Fork this repository, or use the "Use this template" button to create a new repo based on this one
+1. Fork this repository, or click "[Use this template](https://github.com/Cipscis/base-project/generate)" to create a new repo based on this one
 2. Update the `package.json` file to reflect your new project's details
 3. Create a `.env` file. See [.env](#env) for more information
 4. Run `npm install`

@@ -9,7 +9,8 @@ You will need to install [Node.js](https://nodejs.org/en/) before using this pro
 1. Fork this repository, or click "[Use this template](https://github.com/Cipscis/base-project/generate)" to create a new repo based on this one
 2. Update the `package.json` file to reflect your new project's details
 3. Create a `.env` file. See [.env](#env) for more information
-4. Run `npm install`
+4. Update the paths to assets in `index.html` to use your new project's name. See [GitHub Pages](#github-pages) for more info
+5. Run `npm install`
 
 ## Usage
 
@@ -51,6 +52,10 @@ This file configures [Webpack](https://webpack.js.org/), telling it which entry 
 
 The `.env` file contains the following environment variables:
 
+* `PROJECT_NAME` (`string`)
+
+If present, this is used by the local Node.js server to set up redirects for working with [GitHub Pages](#github-pages).
+
 * `MODE` (`string 'development' | 'production'`)
 
 This is used by Webpack to determine what optimisations to use and how to generate sourcemaps.
@@ -62,11 +67,20 @@ This is used by [Express](https://expressjs.com/) to determine which port to use
 An example `.env` file you can use for development is:
 
 ```
+PROJECT_NAME = "base-project"
 MODE = "development"
 PORT = "8080"
 ```
 
 This file is intended to differ from environment to environment, so it is ignored by Git.
+
+## GitHub Pages
+
+When publishing a project using [GitHub Pages](https://pages.github.com/), the project usually appears at a URL with a path, such as [https://cipscis.github.io/base-project]. This means using root relative URLs such as `/asssets/css/main.css` would work locally, but would break when the project is published on GitHub Pages.
+
+To fix this, the local Node.js server looks for a `PROJECT_NAME` variable in your [`.env`](#env) file. If it finds one, it sets up internal redirects so URLs starting with `/<projectname>` are instead treated as though they were root relative, so they will find your assets.
+
+By default, the `index.html` file is configured to be published to GitHub Pages under the project name `base-project`. When you use it as a base for your own project, you will need to update these URLs.
 
 ## Dependencies
 

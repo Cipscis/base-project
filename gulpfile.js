@@ -30,13 +30,13 @@ const cssSrcDir = 'assets/scss';
 const cssOutputDir = 'assets/css';
 
 const buildSass = function () {
-    return gulp.src(`${cssSrcDir}/**/*.scss`)
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest(cssOutputDir));
+	return gulp.src(`${cssSrcDir}/**/*.scss`)
+		.pipe(sass().on('error', sass.logError))
+		.pipe(gulp.dest(cssOutputDir));
 };
 
 const watchSass = function () {
-    gulp.watch(`${cssSrcDir}/**/*.scss`, buildSass);
+	gulp.watch(`${cssSrcDir}/**/*.scss`, buildSass);
 };
 
 //////////////////

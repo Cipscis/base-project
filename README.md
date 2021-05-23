@@ -32,7 +32,7 @@ The `watch` task compiles CSS files using [gulp-sass](https://www.npmjs.com/pack
 
 Assets such as CSS and JavaScript are contained in `./assets`. In here, the contents of the `scss` folder are used to compile CSS files into the `css` folder.
 
-The `assets/js` folder contains a `src` folder and a `dist` folder. The JavaScript files inside the `src` folder are bundled into the `dist` folder. By default, Webkit is configured to look for a single entry point at `./assets/js/src/main.js`.
+The `assets/js` folder contains a `src` folder and a `dist` folder. The JavaScript files inside the `src` folder are bundled into the `dist` folder. By default, Webpack is configured to look for a single entry point at `./assets/js/src/main.js`.
 
 ### Backend assets
 

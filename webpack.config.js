@@ -7,9 +7,9 @@ const __dirname = fileURLToPath(import.meta.url);
 
 let config = {
 	mode: process.env.MODE,
-	entry: './assets/js/src/main.js',
+	entry: './app/assets/js/src/main.js',
 	output: {
-		path: path.resolve(__dirname, 'assets/js/dist'),
+		path: path.resolve(__dirname, 'app/assets/js/dist'),
 		filename: 'bundle.js',
 	},
 };

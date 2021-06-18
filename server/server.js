@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT;
 const projectName = process.env.PROJECT_NAME;
 
-app.use(express.static('.'));
+app.use(express.static('app'));
 
 if (projectName) {
 	// GitHub Pages publishes projects to <username>.github.io/<projectname>

@@ -8,9 +8,9 @@ import gulp from 'gulp';
 import webpack from 'webpack-stream';
 import webpackConfig from './webpack.config.js';
 
-const jsEntryPoints = 'assets/js/src/main.js';
-const jsSrcDir = 'assets/js/src';
-const jsOutputDir = 'assets/js/dist';
+const jsEntryPoints = 'app/assets/js/src/main.js';
+const jsSrcDir = 'app/assets/js/src';
+const jsOutputDir = 'app/assets/js/dist';
 
 const buildJs = function () {
 	return gulp.src(jsEntryPoints)
@@ -33,8 +33,8 @@ import sass from 'gulp-sass';
 import dartSass from 'sass';
 sass.compiler = dartSass;
 
-const cssSrcDir = 'assets/scss';
-const cssOutputDir = 'assets/css';
+const cssSrcDir = 'app/assets/scss';
+const cssOutputDir = 'app/assets/css';
 
 const buildSass = function () {
 	return gulp.src(`${cssSrcDir}/**/*.scss`)

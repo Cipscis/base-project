@@ -9,7 +9,7 @@ let config = {
 	mode: process.env.MODE,
 	entry: './app/assets/js/src/main.js',
 	output: {
-		path: path.resolve(__dirname, 'app/assets/js/dist'),
+		path: path.resolve(__dirname, '../app/assets/js/dist'),
 		filename: 'bundle.js',
 	},
 };

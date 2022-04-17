@@ -32,13 +32,9 @@ You should also update the `CHANGELOG.md` file to describe your changes. This is
 
 ### Frontend assets
 
-By default, your project consists of a single file. This is called `main.js`, but you can change it. If you do, make sure you update the [`browser`](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#browser) property in your `package.json` file. If your project doesn't need to be run in a browser, you should change this property to [`main`](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#main).
-
-Additional files can be included in your project by adding them to the [`files`](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#files) array in your `package.json` file.
-
 Assets such as CSS and JavaScript are contained in `/app/assets`. In here, the contents of the `scss` folder are used to compile CSS files into the `css` folder.
 
-The `/app/assets/js` folder contains a `src` folder and a `dist` folder. The JavaScript files inside the `src` folder are bundled into the `dist` folder. By default, Webpack is configured to look for a single entry point at `/app/assets/js/src/main.js`.
+The `/app/assets/js` folder contains a `src` folder and a `dist` folder. Any JavaScript or TypeScript files inside the `src` folder are bundled into the `dist` folder. By default, Webpack is configured to look for a single entry point at `/app/assets/js/src/main.ts`.
 
 ### Backend assets
 
@@ -68,7 +64,7 @@ See [.env](#env-1) for information on setting up a `.env` file.
 
 ## GitHub Pages
 
-This project is set up to use a GitHub Action every time new code is pushed to the `main` branch. This GitHub Action runs the `build` task, then deploys the contents of the `app` directory by committing them to a `gh-pages` branch. This `gh-pages` branch should be configured in GitHub to be published to GitHub Pages.
+This project is set up to use a GitHub Action every time new code is pushed to the `main` branch. This `build-and-deploy` workflow runs the `build` npm script, then runs the test script, then if the tests passed it deploys the contents of the `app` directory by committing them to a `gh-pages` branch. This `gh-pages` branch should be configured in GitHub to be published to GitHub Pages.
 
 When publishing a project using [GitHub Pages](https://pages.github.com/), the project usually appears at a URL with a path, such as `https://cipscis.github.io/base-project`. This means using root relative URLs such as `/assets/css/main.css` would work locally, but would break when the project is published on GitHub Pages.
 
@@ -97,7 +93,7 @@ You will need to install [Node.js](https://nodejs.org/en/) before working on thi
 3. Create a [`.env`](#env) file.
 4. Run `npm start` to run the local server and watch CSS and JS files for changes.
 
-This project creates five npm tasks:
+This project creates the following npm scripts:
 
 * `npm run server` runs a Node.js server on the port specified in the [`.env`](#env) file, using [Express](https://expressjs.com/).
 
@@ -105,9 +101,17 @@ This project creates five npm tasks:
 
 * `npm run watch` first runs the `build` task, then watches the relevant directories and reruns the `build` task if it sees any changes.
 
+* `npm run lintCss` lints all SCSS files using [stylelint](https://www.npmjs.com/package/stylelint).
+
+* `npm run lintJs` lints all JavaScript and TypeScript files using [eslint](https://www.npmjs.com/package/eslint).
+
+* `npm run lint` runs the `lintCss` and `lintJs` scripts.
+
 * `npm start` runs both the `server` and `watch` tasks simultaneously.
 
-* `npm test` lints any TypeScript.
+* `npm test` lints and compiles any TypeScript.
+
+* `npm run prepare` first removes directories containing compiled files, then runs the `test` script. You should never need to run this script manually, [the `prepare` script runs automatically](https://docs.npmjs.com/cli/v7/using-npm/scripts#life-cycle-scripts) after you run `npm install`.
 
 Usually, you will just want to run `npm start`.
 
@@ -176,6 +180,10 @@ These dependencies are used when working on the project locally.
 	* [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin): Allows `eslint` to lint TypeScript
 
 	* [@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser): Allows `eslint` to parse TypeScript
+
+* [stylelint](https://www.npmjs.com/package/stylelint): Linting CSS
+
+	* [stylelint-config-recommended-scss](https://www.npmjs.com/package/stylelint-config-recommended-scss): Allows `stylelint` to lint SCSS files, and provides a base set of SCSS linting rules
 
 ### Deploy
 

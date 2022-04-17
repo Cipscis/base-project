@@ -3,6 +3,8 @@
 import gulp from 'gulp';
 
 ///////////
+// Clean //
+///////////
 import { stat, rm } from 'fs/promises';
 
 const clean = function () {

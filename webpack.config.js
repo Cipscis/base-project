@@ -20,7 +20,7 @@ const config = {
 	resolve: {
 		fullySpecified: true,
 		extensionAlias: {
-			'js': ['.ts', 'js'],
+			'js': ['ts', 'js'],
 		},
 	},
 	module: {

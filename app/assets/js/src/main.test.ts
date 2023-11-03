@@ -4,7 +4,7 @@ import {
 	test,
 } from '@jest/globals';
 
-import { example } from './main.js';
+import { example } from './main';
 
 describe('example', () => {
 	test('adds two numbers', () => {

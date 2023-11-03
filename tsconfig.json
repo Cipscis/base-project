@@ -27,6 +27,9 @@
 		// Don't require file extensions or relative paths in imports
 		// https://www.typescriptlang.org/tsconfig#moduleResolution
 		"moduleResolution": "Bundler",
+		// Specify the base URL for using non-relative paths with module names
+		// https://www.typescriptlang.org/tsconfig#baseUrl
+		"baseUrl": "./app/assets/js/src",
 		// Include support for latest ECMAScript version
 		// https://www.typescriptlang.org/tsconfig#module
 		// https://www.typescriptlang.org/docs/handbook/modules/reference.html#summary-1
@@ -36,7 +39,7 @@
 		"noEmit": true,
 
 		// Include types for the latest ECMAScript features,
-		// and also DOM APIs
+		// as well as DOM APIs so it can run in the browser
 		// https://www.typescriptlang.org/tsconfig#lib
 		"lib": ["ESNext", "DOM", "DOM.Iterable"]
 	}

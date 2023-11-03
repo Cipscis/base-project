@@ -34,7 +34,7 @@ You should also update the `CHANGELOG.md` file to describe your changes. This is
 
 Assets such as CSS and JavaScript are contained in `/app/assets`. In here, the contents of the `scss` folder are used to compile CSS files into the `css` folder.
 
-The `/app/assets/js` folder contains a `src` folder and a `dist` folder. Any JavaScript or TypeScript files inside the `src` folder are bundled into the `dist` folder. By default, Webpack is configured to look for a single entry point at `/app/assets/js/src/main.ts`.
+The `/app/assets/js` folder contains a `src` folder and a `dist` folder. Any JavaScript or TypeScript files inside the `src` folder are bundled into the `dist` folder. By default, eslint is configured to look for a single entry point at `/app/assets/js/src/main.ts`.
 
 ### Backend assets
 
@@ -56,11 +56,11 @@ For more information on the differences, see [Differences between ES modules and
 
 ### Linting
 
-Both [eslint](https://www.npmjs.com/package/eslint) and [stylelint](https://www.npmjs.com/package/stylelint) configuration files can be found within the [`config`](./config) folder.
+[eslint](https://www.npmjs.com/package/eslint) is configured in [`.eslintrc.cjs`](./.eslintrc.cjs), and [stylelint](https://www.npmjs.com/package/stylelint) is configured in [`stylelint.config.cjs`](./stylelint.config.cjs)
 
 ### Tests
 
-The [Jest](https://jestjs.io/)-based test suite is configured in [jest.config.ts](./config/jest.config.ts). No custom test name matcher is specified, which means [Jest's default matcher](https://jestjs.io/docs/configuration#testmatch-arraystring) will be used:
+The [Jest](https://jestjs.io/)-based test suite is configured in [jest.config.js](./jest.config.js). No custom test name matcher is specified, which means [Jest's default matcher](https://jestjs.io/docs/configuration#testmatch-arraystring) will be used:
 
 > By default it looks for `.js`, `.jsx`, `.ts` and `.tsx` files inside of `__tests__` folders, as well as any files with a suffix of `.test` or `.spec` (e.g. `Component.test.js` or `Component.spec.js`). It will also find files called `test.js` or `spec.js`.
 

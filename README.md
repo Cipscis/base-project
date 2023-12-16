@@ -149,7 +149,7 @@ This file is intended to differ from environment to environment, so it is ignore
 
 ## Dependencies
 
-None.
+* [Preact](https://preactjs.com/): Rendering framework, alternative to React.
 
 ## Dev Dependencies
 
@@ -175,6 +175,8 @@ These dependencies are used when working on the project locally.
 
 	* [ts-jest](https://kulshekhar.github.io/ts-jest/docs/): Allows Jest tests to be written in TypeScript
 
+	* [@testing-library/preact](https://testing-library.com/docs/preact-testing-library/intro): Testing library for Preact
+
 	* [@testing-library/jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/): Utilities for DOM tests using Jest
 
 	* [@testing-library/user-event](https://testing-library.com/docs/user-event/intro/): Utilities for simulating user interaction during tests
@@ -196,6 +198,12 @@ These dependencies are used when working on the project locally.
 	* [@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser): Allows `eslint` to parse TypeScript
 
 	* [@stylistic/eslint-plugin](https://eslint.style/): Provides linting rules to enforce code style
+
+	* [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react): Provides React/Preact linting rules
+
+	* [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks): Provides React/Preact linting rules
+
+	* [eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest): Provides Jest linting rules
 
 * [stylelint](https://www.npmjs.com/package/stylelint): Linting CSS
 

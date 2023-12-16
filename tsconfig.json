@@ -38,6 +38,13 @@
 		// Include types for the latest ECMAScript features,
 		// as well as DOM APIs so it can run in the browser
 		// https://www.typescriptlang.org/tsconfig#lib
-		"lib": ["ESNext", "DOM", "DOM.Iterable"]
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+
+		// Replace JSX with calls to a JSX function
+		// https://www.typescriptlang.org/tsconfig#jsx
+		"jsx": "react-jsx",
+		// Tell TypeScript to import JSX function from "preact"
+		// https://www.typescriptlang.org/tsconfig#jsxImportSource
+		"jsxImportSource": "preact"
 	}
 }

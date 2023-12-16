@@ -125,7 +125,7 @@ Usually, you will just want to run `npm start`, but this project also provides t
 
 The `.env` file contains the following environment variables:
 
-* `PROJECT_NAME: string`
+* `PROJECT_NAME?: string`
 
 If present, used by [Express](https://expressjs.com/) to set up redirects for emulating [GitHub Pages](#github-pages).
 

@@ -60,9 +60,11 @@ For more information on the differences, see [Differences between ES modules and
 
 ### Tests
 
-The [Jest](https://jestjs.io/)-based test suite is configured in [jest.config.js](./jest.config.js). No custom test name matcher is specified, which means [Jest's default matcher](https://jestjs.io/docs/configuration#testmatch-arraystring) will be used:
+The [Jest](https://jestjs.io/)-based test suite is configured in [jest.config.js](./test/jest.config.js). No custom test name matcher is specified, which means [Jest's default matcher](https://jestjs.io/docs/configuration#testmatch-arraystring) will be used:
 
 > By default it looks for `.js`, `.jsx`, `.ts` and `.tsx` files inside of `__tests__` folders, as well as any files with a suffix of `.test` or `.spec` (e.g. `Component.test.js` or `Component.spec.js`). It will also find files called `test.js` or `spec.js`.
+
+If any extra setup needs to be done before tests are run, such as polyfilling functionality not supported by `jsdom`, code for this can be placed in [jest.setup.ts](./test/jest.setup.ts').
 
 ### .env
 
@@ -70,13 +72,17 @@ See [.env](#env-1) for information on setting up a `.env` file.
 
 ## GitHub Pages
 
-This project is set up to use a GitHub Action every time new code is pushed to the `main` branch. This `build-and-deploy` workflow runs the `build` npm script, then runs the test script, then if the tests passed it deploys the contents of the `app` directory by committing them to a `gh-pages` branch. This `gh-pages` branch should be configured in GitHub to be published to GitHub Pages.
+This project is set up to use a GitHub Action every time new code is pushed to the `main` branch. This `build-and-deploy` workflow runs the `build` npm script, then runs the test script, then if the tests passed it deploys the contents of the `app` directory directly to GitHub Pages.
 
-When publishing a project using [GitHub Pages](https://pages.github.com/), the project usually appears at a URL with a path, such as `https://cipscis.github.io/base-project`. This means using root relative URLs such as `/assets/css/main.css` would work locally, but would break when the project is published on GitHub Pages.
+In order to allow the `main` branch to be used to publish to GitHub Pages, you need to set up an **environment** called `github-pages` in the settings for your project. This environment should be configured to allow branches with the name pattern `main` to deploy to GitHub Pages.
 
-To fix this, the local Node.js server looks for a `PROJECT_NAME` variable in your [`.env`](#env-1) file. If it finds one, it sets up redirects so URLs starting with `/${PROJECT_NAME}` can be used as though they were root relative, so they will find your assets.
+When publishing a project using [GitHub Pages](https://pages.github.com/), if you are not using a custom domain the project usually appears at a URL with a path, such as `https://cipscis.github.io/base-project`. This means using root relative URLs such as `/assets/css/main.css` would work locally, but would break when the project is published on GitHub Pages.
+
+To fix this, the local Node.js server looks for a `PROJECT_NAME` variable in your [`.env`](#env-1) file. If it finds one, it sets up rewrites so you will need to use the same `/${PROJECT_NAME}/` paths during local development as would be required by GitHub Pages.
 
 By default, the `index.html` file is configured to be published to GitHub Pages under the project name `base-project`. When you use it as a base for your own project, you will need to update these URLs.
+
+If you are publishing to GitHub Pages using a custom domain, you can remove the `PROJECT_NAME` variable from your [`.env](#env-1) file and any `/${PROJECT_NAME}/` paths specified in other files.
 
 ---
 
@@ -112,22 +118,22 @@ Usually, you will just want to run `npm start`, but this project also provides t
 * `npm start` runs both the `server` and `watch` tasks simultaneously.
 
 * `npm test` runs any configured test suites using [Jest](https://jestjs.io/).
-* `npm run testCoverage` runs any configured test suites using [Jest](https://jestjs.io/), and reports coverage information.
-* `npm run testWatch` runs any configured test suites using [Jest](https://jestjs.io/) in watch mode.
+* `npm run test:coverage` runs any configured test suites using [Jest](https://jestjs.io/), and reports coverage information.
+* `npm run watch:test` runs any configured test suites using [Jest](https://jestjs.io/) in watch mode.
 
 ### .env
 
 The `.env` file contains the following environment variables:
 
-* `PROJECT_NAME` `(string)`
+* `PROJECT_NAME: string`
 
 If present, used by [Express](https://expressjs.com/) to set up redirects for emulating [GitHub Pages](#github-pages).
 
-* `MODE` `(string 'development' | 'production')`
+* `MODE: 'development' | 'production'`
 
-Used by Webpack to determine what optimisations to use and how to generate sourcemaps.
+Used to determine what optimisations to use when running the build process.
 
-* `PORT` `(int)`
+* `PORT: number`
 
 Used by [Express](https://expressjs.com/) to determine which port to use when running a local Node.js server.
 
@@ -199,8 +205,10 @@ These dependencies are used when working on the project locally.
 
 These dependencies are used for deploying the project to GitHub Pages.
 
-* [checkout](https://github.com/marketplace/actions/checkout): Used to check out the repository to a workspace so it can be built
+* [checkout](https://github.com/marketplace/actions/checkout): Used to check out the repository to a workspace so it can be built.
 
 * [setup-node](https://github.com/marketplace/actions/setup-node-js-environment): Use to set up a Node.JS environment for the build and test scripts to run on during the deployment process.
 
-* [Deploy to GitHub Pages](https://github.com/marketplace/actions/deploy-to-github-pages): Used to deploy the project to GitHub pages once it has been built
+* [upload-pages-artifact](https://github.com/marketplace/actions/upload-github-pages-artifact): Used to upload an artifact to use for deploying to GitHub Pages.
+
+* [deploy-pages](https://github.com/marketplace/actions/deploy-github-pages-site): Used to deploy the artifact to GitHub Pages.

@@ -1,16 +1,16 @@
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
-import dotenv from 'dotenv';
 import express from 'express';
+import { getEnv } from './getEnv.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-dotenv.config();
 const app = express();
 
-const port = process.env.PORT;
-const projectName = process.env.PROJECT_NAME;
+const env = getEnv();
+const port = Number(env.PORT);
+const projectName = env.PROJECT_NAME;
 
 if (projectName) {
 	// GitHub Pages publishes projects to <username>.github.io/<projectname>
@@ -46,6 +46,14 @@ app.use(express.static('app'));
 app.get('*', (request, response, next) => {
 	response.status(404).sendFile(join(__dirname, '../app/404.html'));
 });
+
+if (typeof port === 'undefined') {
+	throw new Error('Cannot listen on undefined port');
+}
+
+if (isNaN(port)) {
+	throw new Error('Cannot listen to NaN port');
+}
 
 app.listen(port, () => {});
 console.log(`Listening on port ${port}`);

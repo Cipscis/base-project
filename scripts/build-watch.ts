@@ -1,9 +1,7 @@
 import * as esbuild from 'esbuild';
 
-import { config } from './build-config.js';
+import { config as mainConfig } from './build-config/main.js';
 
-const context = await esbuild.context({
-	...config,
-});
+const mainContext = await esbuild.context({ ...mainConfig });
 
-context.watch();
+mainContext.watch();

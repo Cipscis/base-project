@@ -1,5 +1,7 @@
 import * as esbuild from 'esbuild';
 
-import { config } from './build-config.js';
+import { config as mainConfig } from './build-config/main.js';
 
-await esbuild.build(config);
+await Promise.all([
+	esbuild.build(mainConfig),
+]);

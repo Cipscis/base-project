@@ -2,7 +2,8 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
 import express from 'express';
-import { getEnv } from './getEnv.js';
+
+import { getEnv } from './utils/index.ts';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -11,6 +12,10 @@ const app = express();
 const env = getEnv();
 const port = Number(env.PORT);
 const projectName = env.PROJECT_NAME;
+
+if (isNaN(port)) {
+	throw new Error('Cannot listen to NaN port');
+}
 
 if (projectName) {
 	// GitHub Pages publishes projects to <username>.github.io/<projectname>
@@ -43,17 +48,9 @@ Did you mean <a href="/${projectName}${request.url}">/${projectName}${request.ur
 app.use(express.static('app'));
 
 // Anything not already handled is a 404
-app.get('*', (request, response, next) => {
+app.get('/*splat', (request, response, next) => {
 	response.status(404).sendFile(join(__dirname, '../app/404.html'));
 });
-
-if (typeof port === 'undefined') {
-	throw new Error('Cannot listen on undefined port');
-}
-
-if (isNaN(port)) {
-	throw new Error('Cannot listen to NaN port');
-}
 
 app.listen(port, () => {});
 console.log(`Listening on port ${port}`);

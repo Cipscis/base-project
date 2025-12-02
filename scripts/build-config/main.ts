@@ -1,6 +1,6 @@
 import type { BuildOptions } from 'esbuild';
 
-import { dist, src } from './paths.js';
+import { dist, src } from './paths.ts';
 
 export const config: BuildOptions = {
 	entryPoints: [

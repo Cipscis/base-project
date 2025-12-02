@@ -15,6 +15,7 @@ You will need to install [Node.js](https://nodejs.org/en/) before using this tem
 4. Create a `.env` file. See [.env](#env-1) for more information.
 5. Run `npm install`.
 6. Update this `README.md` file and the `CHANGELOG.md` file to remove the instruction sections.
+7. Remove the `.mailmap` file, which contains contents relevant only to this template repo.
 
 Now you're ready to work on code in this project.
 
@@ -159,8 +160,6 @@ These dependencies are used when working on the project locally.
 
 * [Node.js](https://nodejs.org/en/): Runtime environment
 
-* [ts-node](https://typestrong.org/ts-node/): Allows TypeScript code to be run in a Node.js environment
-
 * [npm](https://www.npmjs.com/): Package manager
 
 * [TypeScript](https://www.typescriptlang.org/): JavaScript extension for static type checking
@@ -189,8 +188,6 @@ These dependencies are used when working on the project locally.
 
 * [Concurrently](https://www.npmjs.com/package/concurrently): Running server and development build tasks concurrently
 
-* [dotenv](https://www.npmjs.com/package/dotenv): Reading environment variables from [`.env`](#env) file
-
 * [eslint](https://www.npmjs.com/package/eslint): Linting TypeScript files
 
 	* [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin): Allows `eslint` to lint TypeScript
@@ -205,6 +202,16 @@ These dependencies are used when working on the project locally.
 
 	* [eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest): Provides Jest linting rules
 
+	* [eslint-plugin-import-newlines](https://www.npmjs.com/package/eslint-import-newlines): Provides a linting rule for named imports
+
+	* [@eslint/compat](https://www.npmjs.com/package/@eslint/compat): Use to make older eslint plugins work with the latest version
+
+	* [@eslint/eslintrc](https://www.npmjs.com/package/@eslint/eslintrc): Used to help define the eslint config
+
+	* [@eslint/js](https://www.npmjs.com/package/@eslint/js): eslint's JavaScript configuration, used as a base for eslint config
+
+	* [globals](https://www.npmjs.com/package/globals): Defines global variables for different environments, used by eslint
+
 * [stylelint](https://www.npmjs.com/package/stylelint): Linting CSS
 
 	* [stylelint-config-recommended-scss](https://www.npmjs.com/package/stylelint-config-recommended-scss): Allows `stylelint` to lint SCSS files, and provides a base set of SCSS linting rules
@@ -216,6 +223,10 @@ These dependencies are used for deploying the project to GitHub Pages.
 * [checkout](https://github.com/marketplace/actions/checkout): Used to check out the repository to a workspace so it can be built.
 
 * [setup-node](https://github.com/marketplace/actions/setup-node-js-environment): Use to set up a Node.JS environment for the build and test scripts to run on during the deployment process.
+
+* [upload-artifact](https://github.com/marketplace/actions/upload-a-build-artifact): Used to upload a build artifact to be reused across multiple CI/CD jobs.
+
+* [download-artifact](https://github.com/marketplace/actions/download-artifact): Used to download a build artifact.
 
 * [upload-pages-artifact](https://github.com/marketplace/actions/upload-github-pages-artifact): Used to upload an artifact to use for deploying to GitHub Pages.
 

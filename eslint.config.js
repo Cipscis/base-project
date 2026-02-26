@@ -16,6 +16,7 @@ import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import importNewlines from 'eslint-plugin-import-newlines';
 import jest from 'eslint-plugin-jest';
+import jsdoc from 'eslint-plugin-jsdoc';
 
 const compat = new FlatCompat({
 	baseDirectory: '.',
@@ -56,6 +57,7 @@ export default defineConfig([
 			react,
 			'react-hooks': fixupPluginRules(reactHooks),
 			'import-newlines': importNewlines,
+			jsdoc: jsdoc,
 		},
 
 		extends: compat.extends(
@@ -157,6 +159,13 @@ export default defineConfig([
 				},
 			],
 
+			'jsdoc/no-undefined-types': [
+				'warn',
+				{
+					disableReporting: true,
+				},
+			],
+
 			////////////////////////
 			// Debugging warnings //
 			////////////////////////
@@ -184,6 +193,18 @@ export default defineConfig([
 				{
 					assertionStyle: 'as',
 				},
+			],
+			// Forces a preference for type-only imports if a symbol is only used as a type
+			'@typescript-eslint/consistent-type-imports': [
+				'error',
+				{
+					prefer: 'type-imports',
+					fixStyle: 'inline-type-imports',
+				},
+			],
+			// Forces a preference for `import type { A, B } from 'module';` over `import { type A, type B } from 'module';`
+			"@typescript-eslint/no-import-type-side-effects": [
+				'error',
 			],
 			'@typescript-eslint/explicit-module-boundary-types': [
 				'error'
